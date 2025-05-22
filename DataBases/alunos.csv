@@ -1,0 +1,11 @@
+ID,Nome,Idade,Sexo,Curso,Nota1,Nota2,Faltas,Cidade
+1,Ana Beatriz,20,F,Engenharia,8.5,7.5,2,Recife
+2,Bruno Lima,22,M,Engenharia,6.0,5.5,5,Recife
+3,Carlos Silva,19,M,Administração,9.0,8.5,1,Fortaleza
+4,Daniela Moura,21,F,Administração,7.5,6.5,3,Fortaleza
+5,Eduardo Rocha,23,M,Engenharia,6.5,7.0,6,Recife
+6,Fernanda Alves,20,F,Direito,8.0,9.0,0,Natal
+7,Gabriel Monteiro,22,M,Direito,5.0,6.0,8,Natal
+8,Helena Duarte,19,F,Direito,9.0,8.5,1,Natal
+9,Igor Matos,24,M,Engenharia,7.5,7.5,4,Recife
+10,Juliana Tavares,20,F,Administração,6.0,6.5,2,Fortaleza
