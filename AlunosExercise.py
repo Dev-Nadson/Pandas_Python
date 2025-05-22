@@ -2,8 +2,8 @@
 # Carregue os dados do arquivo alunos.csv em um DataFrame. Ok
 # Mostre apenas os alunos do curso de Engenharia. Ok
 # Calcule a média das notas (Nota1 e Nota2) para cada aluno e crie uma nova coluna chamada MediaFinal. Ok
-# Filtre os alunos com média final maior ou igual a 7.
-# Exiba o número total de faltas por cidade.
+# Filtre os alunos com média final maior ou igual a 7. Ok
+# Exiba o número total de faltas por cidade. Ok
 # Liste a média de MediaFinal por curso.
 # Qual cidade tem a maior média geral de MediaFinal?
 # Crie uma nova coluna chamada Situação com os valores 'Aprovado' se a média for ≥7 e faltas ≤5, senão 'Reprovado'.
@@ -14,12 +14,14 @@ import pandas as pd
 DF_Students = pd.read_csv("./DataBases/alunos.csv")
 DF_Students["MediaFinal"] = (DF_Students["Nota1"] + DF_Students["Nota2"]) / 2
 Absences = DF_Students.groupby('Cidade')['Faltas'].sum() #Groutpby agrupa os valor por indice, ex: agrupa todos os valores em Recife
+CousesAverages = DF_Students.groupby('Curso')['MediaFinal'].mean()
 
 print("Options:" 
       "\n1. All Data"
       "\n2. Engineer Students"
       "\n3. Averages higer than seven"
-      "\n4. Number of absences per city")
+      "\n4. Number of absences per city"
+      "\n5. Final average of courses")
 
 option = input("Choose an option: ")
 match option:
@@ -33,5 +35,8 @@ match option:
         print("Absences per city:\n")
         for city, absence in Absences.items():
             print(f"{city}: {absence}")
+    case "5":
+        for couse, average in CousesAverages.items():
+            print(f"{couse}: {average:.2f}")
     case _:
         print("Invalid Option")
