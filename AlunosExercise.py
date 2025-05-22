@@ -13,10 +13,13 @@
 import pandas as pd
 DF_Students = pd.read_csv("./DataBases/alunos.csv")
 DF_Students["MediaFinal"] = (DF_Students["Nota1"] + DF_Students["Nota2"]) / 2
+Absences = DF_Students.groupby('Cidade')['Faltas'].sum() #Groutpby agrupa os valor por indice, ex: agrupa todos os valores em Recife
 
 print("Options:" 
       "\n1. All Data"
-      "\n2. Engineer Students")
+      "\n2. Engineer Students"
+      "\n3. Averages higer than seven"
+      "\n4. Number of absences per city")
 
 option = input("Choose an option: ")
 match option:
@@ -25,11 +28,10 @@ match option:
     case "2":
         print(f"Engineer Students: \n\n{DF_Students.loc[DF_Students['Curso'] == "Engenharia"]}")
     case "3":
-        print(f"Average higer than seven: \n\n{DF_Students.loc[DF_Students['MediaFinal'] >= 7]}")
+        print(f"Students with average higer than seven: \n\n{DF_Students.loc[DF_Students['MediaFinal'] >= 7]}")
     case "4":
-        Recife = DF_Students.loc[DF_Students['Cidade'] == "Recife"]
-        Fortaleza = DF_Students.loc[DF_Students['Cidade'] == "Fortaleza"]
-        Natal = DF_Students.loc[DF_Students['Cidade'] == "Natal"]
-        print(f"Recife: {Recife['Faltas'].sum()}")
-        print(f"Fortaleza: {Fortaleza['Faltas'].sum()}")
-        print(f"Natal: {Natal['Faltas'].sum()}")
+        print("Absences per city:\n")
+        for city, absence in Absences.items():
+            print(f"{city}: {absence}")
+    case _:
+        print("Invalid Option")
