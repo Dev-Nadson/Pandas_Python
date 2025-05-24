@@ -5,16 +5,18 @@
 # Filtre os alunos com média final maior ou igual a 7. Ok
 # Exiba o número total de faltas por cidade. Ok
 # Liste a média de MediaFinal por curso. OK
-# Qual cidade tem a maior média geral de MediaFinal?
-# Crie uma nova coluna chamada Situação com os valores 'Aprovado' se a média for ≥7 e faltas ≤5, senão 'Reprovado'.
-# Ordene os dados por curso e, dentro de cada curso, por média final decrescente.
+# Qual cidade tem a maior média geral de MediaFinal? Ok
+# Crie uma nova coluna chamada Situação com os valores 'Aprovado' se a média for ≥7 e faltas ≤5, senão 'Reprovado'. Ok
+# Ordene os dados por curso e, dentro de cada curso, por média final decrescente. Ok
 # Salve o novo DataFrame com a coluna MediaFinal e Situação em um arquivo relatorio_final.csv.
-
+import numpy as np
 import pandas as pd
 DF_Students = pd.read_csv("./DataBases/alunos.csv")
 DF_Students["MediaFinal"] = (DF_Students["Nota1"] + DF_Students["Nota2"]) / 2
 Absences = DF_Students.groupby('Cidade')['Faltas'].sum() #Groutpby agrupa os valor por indice, ex: agrupa todos os valores em Recife
-CousesAverages = DF_Students.groupby('Curso')['MediaFinal'].mean()
+CousesAverages = DF_Students.groupby('Curso')['MediaFinal'].mean() #.mean retorna a média
+DF_Students['Situação'] = np.where( (DF_Students['MediaFinal'] >= 7) & (DF_Students['Faltas'] <= 5) , 'Aprovado', 'Reprovado') #np.where "if" de uma única linha, as condições tem que ser separadas
+DF_Students = DF_Students.sort_values(by=["Curso", "MediaFinal"], ascending=[True, False])
 
 print("Options:" 
       "\n1. All Data"
