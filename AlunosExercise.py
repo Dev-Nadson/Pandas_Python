@@ -45,3 +45,4 @@ match option:
         print(f"Course with the highest average: \n{CousesAverages.idxmax()} {CousesAverages.max():.2f}")
     case _:
         print("Invalid Option. ")
+        
